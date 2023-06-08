@@ -1,7 +1,7 @@
 /**
- * @typedef {import('./types').Types}
+ * @type {{CACHE_KEY_PREFIX: string, SLACK: {CHANNEL_ID: string, ENABLED: boolean}, WEBHOOK: {CALL_URL: string, FAILURE_CALL_URL: string, ENABLED: boolean}, EMAIL: {FAILURE_SUBJECT: string, PORT: number, HOST: string, SECURE: boolean, SUBJECT: string, TO: string[]}, DEBUG: boolean, TWITTER: {ENABLED: boolean}, CHECKER: {MESSAGE_FORMAT: (function(*, *, *): string), METHOD: string, PARSE_MODE: string, HTML: {FAILURE_SELECTOR: string, SELECTOR_PATH: string}, JSON: {FAILURE_SELECTOR: string, SELECTOR_PATH: string}, TEXT: {FAILURE_CONTENT: string, CONTENT: string}, SCENARIO: string, NOTIFY_SCENARIO_FAILURES: boolean, URL: string}, TELEGRAM: {CHAT_IDS: string[], ENABLED: boolean}}}
  */
-module.exports = {
+export default {
   DEBUG: true,
   CACHE_KEY_PREFIX: 'pulse-cache',
   CHECKER: {
@@ -12,7 +12,11 @@ module.exports = {
     MESSAGE_FORMAT: (title, url, $body) => `
       ${title}\n\n
       ${url}\n\n
-      ${$body.find('h1').text().replace(/\\r?\\n|\\r|\\t/gm, "").trim()}
+      ${$body
+        .find('h1')
+        .text()
+        .replace(/\\r?\\n|\\r|\\t/gm, '')
+        .trim()}
     `,
     PARSE_MODE: 'TEXT', // TEXT, HTML, JSON
     HTML: {
@@ -51,5 +55,5 @@ module.exports = {
   },
   TWITTER: {
     ENABLED: false,
-  }
+  },
 };

@@ -1,9 +1,9 @@
 require('dotenv').config();
 
-const fetch = require("node-fetch");
-const cheerio = require("cheerio");
-const telegram = require('node-telegram-bot-api')
-const crypto = require("crypto");
+const fetch = require('node-fetch');
+const cheerio = require('cheerio');
+const telegram = require('node-telegram-bot-api');
+const crypto = require('crypto');
 const cache = require('@actions/cache');
 const CONFIG = require('./config');
 
@@ -38,49 +38,55 @@ const tools = {
       const body = await tools.callUrl(bodyContent);
       return cheerio.load(body);
     } catch (e) {
-      tools.log("Error loading page:", e.message)
+      tools.log('Error loading page:', e.message);
     }
   },
   log: (...params) => {
-    if(process.env.DEBUG !== '1') return;
+    if (process.env.DEBUG !== '1') return;
     console.log(...params);
   },
-  makeHash: (data) => crypto.createHash('md5').update(data).digest("hex")
-}
+  makeHash: (data) => crypto.createHash('md5').update(data).digest('hex'),
+}(
+  /**
+   * Parse URL
+   */
+  async () => {
+    const $ = await loadQuerySelector();
 
+    const textTitleList = [];
+    const htmlTitleList = [];
+    // like: #layer-product-list > div.regi-list > div
+    $(process.env.XPATH).each((i, section) => {
+      const $section = $(section);
+      const titleAndInfo = $section
+        .find('h4')
+        .text()
+        .replace(/\r?\n|\r|\t/gm, '')
+        .trim()
+        .split('  ');
+      const mainTitle = titleAndInfo[0];
+      const des = titleAndInfo.filter((n) => n.trim()).join(' , ');
 
-/**
- * Parse URL
- */
-(async () => {
-  const $ = await loadQuerySelector();
+      const items = [];
+      items.map((item) => {
+        $section
+          .find('ul.regi-acm > li')
+          .each((i, li) => features.push($(li).text()));
+      });
 
-  const textTitleList = [];
-  const htmlTitleList = [];
-  // like: #layer-product-list > div.regi-list > div
-  $(process.env.XPATH).each((i, section) => {
-    const $section = $(section);
-    const titleAndInfo = $section.find('h4').text().replace(/\r?\n|\r|\t/gm, "").trim().split("  ");
-    const mainTitle = titleAndInfo[0];
-    const des = titleAndInfo.filter(n => n.trim()).join(" , ");
-
-    const items = [];
-    items.map(item => {
-      $section.find("ul.regi-acm > li").each((i, li) => features.push($(li).text()));
-    })
-
-    textTitleList.push(`${mainTitle}\n
-${$section.find(".price").text()}\n
+      textTitleList.push(`${mainTitle}\n
+${$section.find('.price').text()}\n
 \n
 [${des}]\n
 \n
 ${$section.attr('data-url')}
     `);
-  });
+    });
 
-  tools.log("Grabbed " + textTitleList.length + " Items!");
-  for(let i = 0; i < textTitleList.length; i++) {
-    const title = textTitleList[i];
-    await propagateToChannels({ text: title, html: htmlTitleList[i] });
+    tools.log('Grabbed ' + textTitleList.length + ' Items!');
+    for (let i = 0; i < textTitleList.length; i++) {
+      const title = textTitleList[i];
+      await propagateToChannels({ text: title, html: htmlTitleList[i] });
+    }
   }
-})();
+)();
