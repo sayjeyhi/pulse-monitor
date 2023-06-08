@@ -1,0 +1,27 @@
+{
+  "name": "checker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sayjeyhi/checker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sayjeyhi/checker/issues"
+  },
+  "homepage": "https://github.com/sayjeyhi/checker#readme",
+  "dependencies": {
+    "@actions/cache": "^3.2.1",
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.0.3",
+    "node-fetch": "^2.0.0",
+    "node-telegram-bot-api": "^0.61.0"
+  }
+}

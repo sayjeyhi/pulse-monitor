@@ -1,0 +1,34 @@
+name: Github availability checker
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+
+jobs:
+  update-gist:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 16.x ]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Bun Runtime
+        uses: antongolub/action-setup-bun@v1
+        with:
+          bun-version: 0.6.7
+          bun-repo: 'Jarred-Sumner/bun-releases-for-updater'
+          cache: false
+          cache-bin: false
+
+      - name: Install
+        run: bun i
+
+      - name: Check website
+        run: bun ./index.js
+        env:
+          CHECK_URL: ${{ secrets.CHECK_URL }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_RECEIVERS_CHAT_IDS: ${{ secrets.TELEGRAM_RECEIVERS_CHAT_IDS }}
+          DEBUG: ${{ secrets.DEBUG }}
