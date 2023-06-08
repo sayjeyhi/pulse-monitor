@@ -1,6 +1,6 @@
 import { utils } from '../tools/utils';
 
-export default {
+export const twitter = {
   send() {
     utils.log('Sending tweet...');
   },

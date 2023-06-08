@@ -1,6 +1,6 @@
 import { utils } from '../tools/utils';
 
-export default {
+export const webhook = {
   send() {
     utils.log('Calling webhook...');
   },

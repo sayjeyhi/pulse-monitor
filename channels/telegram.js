@@ -1,7 +1,6 @@
 import { utils } from '../tools/utils';
-const telegram = require('node-telegram-bot-api');
 
-export default {
+export const telegram = {
   async answer() {
     // const bot = new telegram(core.getInput('TELEGRAM_TOKEN'));
     // bot.sendMessage(chatID, core.getInput('message'), {

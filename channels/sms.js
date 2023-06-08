@@ -1,7 +1,7 @@
 import { utils } from '../tools/utils';
 
-export const email = {
+export const sms = {
   send() {
-    utils.log('Sending email...');
+    utils.log('Sending SMS...');
   },
 };

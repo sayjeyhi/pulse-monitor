@@ -29,6 +29,7 @@ export default {
       `${$selectedHtml.text().substring(0, 100)}\n`,
   },
   EMAIL: {
+    ENABLED: true,
     HOST: 'smtp.gmail.com',
     PORT: 465,
     SECURE: true,
@@ -36,21 +37,27 @@ export default {
     FAILURE_SUBJECT: 'New Items',
     TO: ['your@email.com', 'another@email.com'],
   },
-  TELEGRAM: {
-    ENABLED: false,
-    CHAT_IDS: ['YOUR_TELEGRAM_CHAT_ID'],
-  },
   SLACK: {
-    ENABLED: false,
+    ENABLED: true,
     CHANNEL_ID: 'YOUR_SLACK_CHANNEL_ID',
   },
+  SMS: {
+    ENABLED: true,
+  },
+  TELEGRAM: {
+    ENABLED: true,
+    CHAT_IDS: ['YOUR_TELEGRAM_CHAT_ID'],
+  },
+  TWITTER: {
+    ENABLED: true,
+  },
   WEBHOOK: {
-    ENABLED: false,
+    ENABLED: true,
     CALL_URL: 'YOUR_WEBHOOK_URL',
     FAILURE_CALL_URL: 'YOUR_FAILURE_WEBHOOK_URL',
   },
-  TWITTER: {
-    ENABLED: false,
+  WHATSAPP: {
+    ENABLED: true,
   },
   VERSION: '1.0.0',
 };

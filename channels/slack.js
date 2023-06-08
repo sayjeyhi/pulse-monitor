@@ -1,6 +1,6 @@
 import { utils } from '../tools/utils';
 
-export default {
+export const slack = {
   send() {
     utils.log('Sending message to Slack...');
   },
