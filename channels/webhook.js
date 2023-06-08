@@ -1,7 +1,7 @@
 import { utils } from '../tools/utils';
 
 export const webhook = {
-  send() {
-    utils.log('Calling webhook...');
+  send({ text, html }) {
+    utils.log(' - Calling webhook...');
   },
 };

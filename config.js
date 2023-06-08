@@ -8,26 +8,28 @@ export default {
   DEBUG: true,
   CACHE_KEY_PREFIX: 'pulse-cache',
   NOTIFY_SCENARIO_FAILURES: true,
-  HTTP: {
-    URL: 'https://google.com',
-    METHOD: 'GET',
-    PARSE_MODE: parseModes.HTML,
-    HTML_SELECTOR: 'title',
-    JSON_SELECTOR: '.property[0].to.check',
-    VALUE_TO_CHECK: 'some value to be checked', // if you want to check selector value
-    SCENARIO: scenarios.RESPONSE_NOT_CONTAINS,
-    MESSAGE_FORMAT: ({
-      Config,
-      expectedValue,
-      response,
-      $selectedHtml,
-      jsonSelectorValue,
-    }) =>
-      `${Config.HTTP.URL}\n` +
-      `${Config.HTTP.METHOD}\n` +
-      `${Config.HTTP.PARSE_MODE}\n\n` +
-      `${$selectedHtml.text().substring(0, 100)}\n`,
-  },
+  HTTP: [
+    {
+      URL: 'https://google.com',
+      METHOD: 'GET',
+      PARSE_MODE: parseModes.HTML,
+      HTML_SELECTOR: 'title',
+      JSON_SELECTOR: '.property[0].to.check',
+      VALUE_TO_CHECK: 'some value to be checked', // if you want to check selector value
+      SCENARIO: scenarios.RESPONSE_NOT_CONTAINS,
+      MESSAGE_FORMATTER: ({
+        HTTP,
+        expectedValue,
+        response,
+        $selectedHtml,
+        jsonSelectorValue,
+      }) =>
+        `${HTTP.URL}\n` +
+        `${HTTP.METHOD}\n` +
+        `${HTTP.PARSE_MODE}\n\n` +
+        `${$selectedHtml.text().substring(0, 100)}\n`,
+    },
+  ],
   EMAIL: {
     ENABLED: true,
     HOST: 'smtp.gmail.com',
@@ -37,19 +39,22 @@ export default {
     FAILURE_SUBJECT: 'New Items',
     TO: ['your@email.com', 'another@email.com'],
   },
+  FACEBOOK: {
+    ENABLED: false,
+  },
   SLACK: {
     ENABLED: true,
     CHANNEL_ID: 'YOUR_SLACK_CHANNEL_ID',
   },
   SMS: {
-    ENABLED: true,
+    ENABLED: false,
   },
   TELEGRAM: {
     ENABLED: true,
     CHAT_IDS: ['YOUR_TELEGRAM_CHAT_ID'],
   },
   TWITTER: {
-    ENABLED: true,
+    ENABLED: false,
   },
   WEBHOOK: {
     ENABLED: true,
@@ -57,7 +62,7 @@ export default {
     FAILURE_CALL_URL: 'YOUR_FAILURE_WEBHOOK_URL',
   },
   WHATSAPP: {
-    ENABLED: true,
+    ENABLED: false,
   },
   VERSION: '1.0.0',
 };

@@ -1,4 +1,5 @@
 export { email } from './email';
+export { facebook } from './facebook';
 export { slack } from './slack';
 export { telegram } from './telegram';
 export { twitter } from './twitter';

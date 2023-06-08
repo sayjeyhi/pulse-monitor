@@ -1,7 +1,7 @@
 import { utils } from '../tools/utils';
 
 export const whatsapp = {
-  send() {
-    utils.log('Sending message to WhatsApp...');
+  send({ text, html }) {
+    utils.log(' - Sending message to WhatsApp...');
   },
 };

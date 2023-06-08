@@ -1,8 +1,68 @@
-# A fast bun based checker
-
-> This is a fast bun based checker/crawler, which is used to check the response of some endpoint and notify you
+# Pulse Monitor
+> ⚡️A fast bun based checker/crawler/monitor tool which runs for free on github
 
 ![banner.png](assets/banner.png)
+
+
+### Use cases
+
+- This tool allows you to retrieve website data and receive notifications when some condition met.
+- This can check your or other services Rest API response and do something with the response.
+- You can track the status of your website and receive notifications when it encounters downtime.
+- You can observe the price of a product and receive notifications when it undergoes fluctuations.
+- You can monitor the number of followers on a social network and receive notifications when it changes.
+
+### Features
+Supported data sources:
+
+| Data Source | Supported |
+| ------ | ------ |
+| Rest API(json) | ✅ |
+| Website(HTMl) | ✅ |
+| Website(Text) | ✅ |
+| GraphQL | ❌ |
+| Socket | ❌ |
+
+Supported scenarios:
+
+| Scenario | Supported |
+| ------ | ------ |
+| RESPONSE_EQUAL | ✅ |
+| RESPONSE_NOT_EQUAL | ✅ |
+| RESPONSE_GREATER_THAN | ✅ |
+| RESPONSE_LOWER_THAN | ✅ |
+| RESPONSE_CONTAINS | ✅ |
+| RESPONSE_NOT_CONTAINS | ✅ |
+| HTML_SELECTOR_EXIST | ✅ |
+| HTML_SELECTOR_NOT_EXIST | ✅ |
+| HTML_SELECTOR_CONTENT_EQUAL | ✅ |
+| HTML_SELECTOR_CONTENT_NOT_EQUAL | ✅ |
+| HTML_SELECTOR_CONTENT_GREATER_THAN | ✅ |
+| HTML_SELECTOR_CONTENT_LOWER_THAN | ✅ |
+| HTML_SELECTOR_CONTENT_CONTAINS | ✅ |
+| HTML_SELECTOR_CONTENT_NOT_CONTAINS | ✅ |
+| JSON_SELECTOR_CONTENT_EXIST | ✅ |
+| JSON_SELECTOR_CONTENT_NOT_EXIST | ✅ |
+| JSON_SELECTOR_CONTENT_EQUAL | ✅ |
+| JSON_SELECTOR_CONTENT_NOT_EQUAL | ✅ |
+| JSON_SELECTOR_CONTENT_GREATER_THAN | ✅ |
+| JSON_SELECTOR_CONTENT_LOWER_THAN | ✅ |
+| JSON_SELECTOR_CONTENT_CONTAINS | ✅ |
+| JSON_SELECTOR_CONTENT_NOT_CONTAINS | ✅ |
+
+Supported notification methods:
+
+| Method | Supported |
+| ------ | ------ |
+| Email | ✅ |
+| Facebook | ❌ |
+| Slack | ✅ |
+| SMS | ❌ |
+| Telegram | ✅ |
+| Twitter | ❌ |
+| Webhook | ✅ |
+| Whatsapp | ❌ |
+
 
 ## How to use
 
@@ -103,13 +163,6 @@ FACEBOOK_ENABLED="true"
 FACEBOOK_APP_ID="your-facebook-app-id"
 FACEBOOK_APP_SECRET="your-facebook-app-secret"
 ```
-
-### Possible use cases
-
-- This crawler allows you to retrieve website data and receive notifications when the data undergoes changes.
-- You Can track the status of your website and receive notifications when it encounters downtime.
-- You can observe the price of a product and receive notifications when it undergoes fluctuations.
-- You can monitor the number of followers on a social network and receive notifications when it changes.
 
 ### Author
 

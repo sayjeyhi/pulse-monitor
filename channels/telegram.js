@@ -13,7 +13,7 @@ export const telegram = {
     //   bot.sendMessage(chatId, 'Received your message');
     // });
   },
-  send() {
-    utils.log('Sending message to WhatsApp...');
+  send({ text, html }) {
+    utils.log(' - Sending message to WhatsApp...');
   },
 };

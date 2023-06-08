@@ -9,16 +9,21 @@ import Config from './config';
 dotenv.config();
 utils.printLogo();
 
+/**
+ * Main function
+ */
 const PulseMonitor = {
-  async http({
-    METHOD,
-    URL,
-    PARSE_MODE,
-    JSON_SELECTOR,
-    HTML_SELECTOR,
-    SCENARIO,
-    VALUE_TO_CHECK,
-  }) {
+  async http(HTTP_CONFIG) {
+    const {
+      METHOD,
+      URL,
+      PARSE_MODE,
+      JSON_SELECTOR,
+      HTML_SELECTOR,
+      SCENARIO,
+      VALUE_TO_CHECK,
+      MESSAGE_FORMATTER,
+    } = HTTP_CONFIG;
     const responseText = await http.call({
       url: URL,
       method: METHOD,
@@ -53,6 +58,8 @@ const PulseMonitor = {
 
     const handler = scenarioHandlers[SCENARIO];
     const params = {
+      HTTP: HTTP_CONFIG,
+      formatter: MESSAGE_FORMATTER,
       expectedValue: VALUE_TO_CHECK,
       response: responseText,
       $selectedHtml,
@@ -64,7 +71,7 @@ const PulseMonitor = {
      */
     if (handler && handler(params)) {
       utils.log('✅  Condition met');
-      utils.log('----------------------------------');
+      utils.logLineBreak();
       await notifier.propagate(params);
     } else {
       utils.log('No notification needed');
@@ -72,4 +79,9 @@ const PulseMonitor = {
   },
 };
 
-PulseMonitor.http(Config.HTTP);
+/**
+ * Start monitoring HTTP endpoints
+ */
+Config.HTTP.map(async (httpConfig) => {
+  await PulseMonitor.http(httpConfig);
+});

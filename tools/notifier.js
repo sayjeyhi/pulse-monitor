@@ -9,23 +9,25 @@ export const notifier = {
    */
   async propagate(params) {
     utils.log('💬 Notifying with params:');
-    utils.log(' ️ - expectedValue:', params.expectedValue);
-    utils.log('   - jsonSelectorValue:', params.jsonSelectorValue);
+    utils.log(' - expectedValue:', params.expectedValue);
+    utils.log(' - jsonSelectorValue:', params.jsonSelectorValue);
     utils.log(
-      ' ️ - htmlSelectorValue:',
+      ' - htmlSelectorValue:',
       params.$selectedHtml.text().substring(0, 100) + '...'
     );
-    utils.log('   - text:', params.response.substring(0, 100) + '...');
+    utils.log(' - text:', params.response.substring(0, 100) + '...');
 
-    const message = Config.HTTP.MESSAGE_FORMAT({ ...params, Config });
+    const message = params.formatter({ ...params });
     utils.log('➡️ Message: "');
     console.log(message + '"');
 
-    utils.log('----------------------------------');
+    utils.logLineBreak();
     for (const channel in channels) {
+      utils.log(`📣 Notifying ${channel}...`);
       if (Config[channel.toUpperCase()] && Config[channel.toUpperCase()].ENABLED) {
-        utils.log(`📣 Notifying ${channel}...`);
-        await channels[channel].send(message);
+        await channels[channel].send({ text: message });
+      } else {
+        utils.log(' - ❌  Channel disabled');
       }
     }
   },
