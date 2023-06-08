@@ -7,6 +7,7 @@ import { scenarioHandlers } from './constants/scenarioHandlers';
 import Config from './config';
 
 dotenv.config();
+utils.printLogo();
 
 const PulseMonitor = {
   async http({
@@ -46,6 +47,8 @@ const PulseMonitor = {
         );
       }
       jsonValue = response.parseJson(responseText, JSON_SELECTOR);
+    } else {
+      utils.log('📄 Checking response text directly');
     }
 
     const handler = scenarioHandlers[SCENARIO];
@@ -60,6 +63,8 @@ const PulseMonitor = {
      * If we have the needed conditions, propagate the notification
      */
     if (handler && handler(params)) {
+      utils.log('✅  Condition met');
+      utils.log('----------------------------------');
       await notifier.propagate(params);
     } else {
       utils.log('No notification needed');

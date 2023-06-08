@@ -26,9 +26,9 @@ jobs:
         run: bun i
 
       - name: Check website
-        run: bun ./index.js
+        run: bun run index.js
         env:
-          CHECK_URL: ${{ secrets.CHECK_URL }}
+          SEND_EMAIL_ADDRESS: ${{ secrets.SEND_EMAIL_ADDRESS }}
+          SEND_EMAIL_PASSWORD: ${{ secrets.SEND_EMAIL_PASSWORD }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_RECEIVERS_CHAT_IDS: ${{ secrets.TELEGRAM_RECEIVERS_CHAT_IDS }}
-          DEBUG: ${{ secrets.DEBUG }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

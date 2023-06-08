@@ -7,8 +7,17 @@ export const notifier = {
    * @returns {Promise<void>}
    */
   async propagate(params) {
-    utils.log('Notifying...', params);
+    utils.log('💬 Notifying with params:');
+    utils.log(' ️ - expectedValue:', params.expectedValue);
+    utils.log('   - jsonSelectorValue:', params.jsonSelectorValue);
+    utils.log(
+      ' ️ - htmlSelectorValue:',
+      params.$selectedHtml.text().substring(0, 100) + '...'
+    );
+    utils.log('   - text:', params.response.substring(0, 100) + '...');
+
     const message = Config.HTTP.MESSAGE_FORMAT({ ...params, Config });
-    utils.log('Message:', message);
+    utils.log('➡️ Message: "');
+    console.log(message + '"' + '\n');
   },
 };

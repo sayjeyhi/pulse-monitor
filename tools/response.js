@@ -11,12 +11,12 @@ export const response = {
    */
   async parseHtml(bodyContent, selector) {
     try {
-      utils.log('Parsing HTML:', bodyContent.substring(0, 100), '...');
-      utils.log('With selector::', selector);
+      utils.log('➡️ Parsing HTML:', bodyContent.substring(0, 100), '...');
+      utils.log('➡️ With selector:', selector);
       const $ = await cheerio.load(bodyContent);
       return $(selector);
     } catch (e) {
-      utils.log('Error loading page:', e.message);
+      utils.log('🚫 Error loading page:', e.message);
     }
   },
   /**
@@ -27,12 +27,12 @@ export const response = {
    */
   parseJson(bodyContent, selector) {
     try {
-      utils.log('Parsing JSON:', bodyContent.substring(0, 100), '...');
-      utils.log('With selector::', selector);
+      utils.log('➡️ Parsing JSON:', bodyContent.substring(0, 100), '...');
+      utils.log('➡️ With selector::', selector);
       const jsonObject = JSON.parse(bodyContent);
       return get(jsonObject, selector, 'NOT_EXIST_VALUE');
     } catch (e) {
-      utils.log('Error loading page:', e.message);
+      utils.log('🚫 Error loading page:', e.message);
     }
   },
 };

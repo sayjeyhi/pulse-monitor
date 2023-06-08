@@ -63,9 +63,8 @@ You need to create a slack app and get the webhook url. You can create a slack a
 Then change the webhook url in the `main.yaml` file.
 
 ```yaml
-SLACK_ENABLED="true"
-SLACK_SLACK_WEBHOOK_URL="your-slack-webhook-url"
 SLACK_SLACK_CHANNEL_ID="your-slack-channel-id"
+SLACK_SLACK_WEBHOOK_URL="your-slack-webhook-url"
 ```
 
 ### Whatsapp (soon)

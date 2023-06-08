@@ -10,12 +10,16 @@ export const http = {
    * @returns {Promise<string>}
    */
   async call({ url, method = 'GET', headers = {}, ...rest }) {
-    utils.log(`HTTP Calling URL: ${url}`);
-    const response = await fetch(url, {
-      method,
-      headers,
-      ...rest,
-    });
-    return await response.text();
+    utils.log(`🌎 HTTP Calling URL: ${url}`);
+    try {
+      const response = await fetch(url, {
+        method,
+        headers,
+        ...rest,
+      });
+      return await response.text();
+    } catch (e) {
+      utils.log('🚫 Error loading page:', e.message);
+    }
   },
 };
