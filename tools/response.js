@@ -1,5 +1,6 @@
 import * as cheerio from 'cheerio';
-import { log } from './utils';
+import get from 'lodash-es/get';
+import { utils } from './utils';
 
 export const response = {
   /**
@@ -7,11 +8,24 @@ export const response = {
    * @param bodyContent
    * @returns {Promise<CheerioAPI>}
    */
-  async parse(bodyContent) {
+  async parseHtml(bodyContent) {
     try {
       return cheerio.load(bodyContent);
     } catch (e) {
-      log('Error loading page:', e.message);
+      utils.log('Error loading page:', e.message);
+    }
+  },
+  /**
+   * Parse JSON
+   * @param bodyContent
+   * @returns {Promise<function(*, *): *>}
+   */
+  async parseJson(bodyContent) {
+    try {
+      const jsonObject = JSON.parse(bodyContent);
+      return (path, defaultValue) => get(jsonObject, path, [defaultValue]);
+    } catch (e) {
+      utils.log('Error loading page:', e.message);
     }
   },
 };

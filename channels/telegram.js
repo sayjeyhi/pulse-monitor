@@ -1,3 +1,4 @@
+import { utils } from '../tools/utils';
 const telegram = require('node-telegram-bot-api');
 
 export default {
@@ -12,5 +13,8 @@ export default {
     //   // send a message to the chat acknowledging receipt of their message
     //   bot.sendMessage(chatId, 'Received your message');
     // });
+  },
+  send() {
+    utils.log('Sending message to WhatsApp...');
   },
 };

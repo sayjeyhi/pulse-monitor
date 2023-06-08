@@ -1,4 +1,4 @@
-export default {
+export const utils = {
   log(...params) {
     if (process.env.DEBUG !== '1') return;
     console.log(...params);

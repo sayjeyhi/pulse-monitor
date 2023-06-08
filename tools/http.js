@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { log } from './utils';
+import { utils } from './utils';
 
 export const http = {
   /**
@@ -11,7 +11,7 @@ export const http = {
    * @returns {Promise<string>}
    */
   async call({ url, method = 'GET', headers = {}, ...rest }) {
-    log(`HTTP Calling URL: ${url}`);
+    utils.log(`HTTP Calling URL: ${url}`);
     const response = await fetch(url, {
       method,
       headers,

@@ -23,6 +23,8 @@
     "@actions/cache": "^3.2.1",
     "cheerio": "^1.0.0-rc.12",
     "dotenv": "^16.0.3",
+    "lodash-es": "^4.17.21",
+    "lodash.get": "^4.4.2",
     "node-fetch": "^2.0.0",
     "node-telegram-bot-api": "^0.61.0",
     "prettier": "^2.8.8"

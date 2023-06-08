@@ -1,11 +1,7 @@
+import { utils } from '../tools/utils';
+
 export default {
-  log(...params) {
-    if (process.env.DEBUG !== '1') return;
-    console.log(...params);
-  },
-  makeHash(data) {
-    const hasher = new Bun.CryptoHasher('md5');
-    hasher.update(data, 'utf8');
-    return hasher.digest('hex');
+  send() {
+    utils.log('Calling webhook...');
   },
 };
