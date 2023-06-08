@@ -2,7 +2,7 @@
 
 > This is a fast bun based checker/crawler, which is used to check the response of some endpoint and notify you
 
-![banner.png](banner.png)
+![banner.png](assets/banner.png)
 
 ## How to use
 

@@ -1,13 +1,13 @@
 import * as cheerio from 'cheerio';
 import { log } from './utils';
 
-export const response = {
+export default {
   /**
    * Load selector
    * @param bodyContent
    * @returns {Promise<CheerioAPI>}
    */
-  async parse(bodyContent) {
+  async loadHtmlSelector(bodyContent) {
     try {
       return cheerio.load(bodyContent);
     } catch (e) {

@@ -8,7 +8,4 @@ export default {
     hasher.update(data, 'utf8');
     return hasher.digest('hex');
   },
-  isGithub() {
-    return process.env.GITHUB_EVENT_NAME === 'schedule';
-  },
 };
