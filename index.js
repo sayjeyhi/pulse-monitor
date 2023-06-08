@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import { response } from './tools/response';
 import { notifier } from './tools/notifier';
 import { http } from './tools/http';
+import { utils } from './tools/utils';
 import { scenarioHandlers } from './constants/scenarioHandlers';
 import Config from './config';
 
@@ -60,6 +61,8 @@ const PulseMonitor = {
      */
     if (handler && handler(params)) {
       await notifier.propagate(params);
+    } else {
+      utils.log('No notification needed');
     }
   },
 };
