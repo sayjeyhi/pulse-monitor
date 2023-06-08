@@ -4,26 +4,29 @@ import { utils } from './utils';
 
 export const response = {
   /**
-   * Load selector
+   * Load HTML and return cheerio object
    * @param bodyContent
-   * @returns {Promise<CheerioAPI>}
+   * @param selector
+   * @returns {Promise<*>}
    */
-  async parseHtml(bodyContent) {
+  async parseHtml(bodyContent, selector) {
     try {
-      return cheerio.load(bodyContent);
+      const $ = await cheerio.load(bodyContent);
+      return $(selector);
     } catch (e) {
       utils.log('Error loading page:', e.message);
     }
   },
   /**
-   * Parse JSON
+   * Load JSON and return getter function
    * @param bodyContent
-   * @returns {Promise<function(*, *): *>}
+   * @param selector
+   * @returns {*}
    */
-  async parseJson(bodyContent) {
+  parseJson(bodyContent, selector) {
     try {
       const jsonObject = JSON.parse(bodyContent);
-      return (path, defaultValue) => get(jsonObject, path, [defaultValue]);
+      return get(jsonObject, selector, 'NOT_EXIST_VALUE');
     } catch (e) {
       utils.log('Error loading page:', e.message);
     }

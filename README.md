@@ -116,6 +116,10 @@ FACEBOOK_APP_SECRET="your-facebook-app-secret"
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/sayjeyhi?style=social)](https://twitter.com/sayjeyhi) [![GitHub followers](https://img.shields.io/github/followers/sayjeyhi?style=social)](https://github.com/sayjeyhi) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Jafar--Rezaei-blue)](https://www.linkedin.com/in/jafar-rezaei/)
 
+### Todos
+[] - call graphql endpoint
+[] - TODO: call socket endpoint
+
 ## License
 
 MIT
