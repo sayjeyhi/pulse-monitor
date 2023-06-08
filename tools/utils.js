@@ -1,6 +1,8 @@
+import Config from '../config';
+
 export const utils = {
   log(...params) {
-    if (process.env.DEBUG !== '1') return;
+    if (!Config.DEBUG) return;
     console.log(...params);
   },
   makeHash(data) {

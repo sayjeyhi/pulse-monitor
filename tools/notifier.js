@@ -8,7 +8,7 @@ export const notifier = {
    */
   async propagate(params) {
     utils.log('Notifying...', params);
-    const message = Config.HTTP.MESSAGE_FORMAT(params);
+    const message = Config.HTTP.MESSAGE_FORMAT({ ...params, Config });
     utils.log('Message:', message);
   },
 };

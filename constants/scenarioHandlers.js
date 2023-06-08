@@ -15,18 +15,18 @@ export const scenarioHandlers = {
   /**
    * HTML responses
    */
-  HTML_SELECTOR_CONTENT_EQUAL: ({ expectedValue, htmlSelectorContent }) =>
-    htmlSelectorContent === expectedValue,
-  HTML_SELECTOR_CONTENT_NOT_EQUAL: ({ expectedValue, htmlSelectorContent }) =>
-    htmlSelectorContent !== expectedValue,
-  HTML_SELECTOR_CONTENT_GREATER_THAN: ({ expectedValue, htmlSelectorContent }) =>
-    Number(htmlSelectorContent) > Number(expectedValue),
-  HTML_SELECTOR_CONTENT_LOWER_THAN: ({ expectedValue, htmlSelectorContent }) =>
-    Number(htmlSelectorContent) < Number(expectedValue),
-  HTML_SELECTOR_CONTENT_CONTAINS: ({ expectedValue, htmlSelectorContent }) =>
-    htmlSelectorContent.includes(expectedValue),
-  HTML_SELECTOR_CONTENT_NOT_CONTAINS: ({ expectedValue, htmlSelectorContent }) =>
-    !htmlSelectorContent.includes(expectedValue),
+  HTML_SELECTOR_CONTENT_EQUAL: ({ expectedValue, $selectedHtml }) =>
+    $selectedHtml.text() === expectedValue,
+  HTML_SELECTOR_CONTENT_NOT_EQUAL: ({ expectedValue, $selectedHtml }) =>
+    $selectedHtml.text() !== expectedValue,
+  HTML_SELECTOR_CONTENT_GREATER_THAN: ({ expectedValue, $selectedHtml }) =>
+    Number($selectedHtml.text()) > Number(expectedValue),
+  HTML_SELECTOR_CONTENT_LOWER_THAN: ({ expectedValue, $selectedHtml }) =>
+    Number($selectedHtml.text()) < Number(expectedValue),
+  HTML_SELECTOR_CONTENT_CONTAINS: ({ expectedValue, $selectedHtml }) =>
+    $selectedHtml.text().includes(expectedValue),
+  HTML_SELECTOR_CONTENT_NOT_CONTAINS: ({ expectedValue, $selectedHtml }) =>
+    !$selectedHtml.text().includes(expectedValue),
   HTML_SELECTOR_EXIST: ({ $selectedHtml }) => $selectedHtml.length > 0,
   HTML_SELECTOR_NOT_EXIST: ({ $selectedHtml }) => $selectedHtml.length === 0,
   /**

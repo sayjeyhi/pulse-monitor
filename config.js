@@ -11,18 +11,23 @@ export default {
   HTTP: {
     URL: 'https://google.com',
     METHOD: 'GET',
-    PARSE_MODE: parseModes.TEXT,
-    HTML_SELECTOR: '#some_id > .class',
-    JSON_SELECTOR: '.price',
+    PARSE_MODE: parseModes.HTML,
+    HTML_SELECTOR: 'body',
+    JSON_SELECTOR: '.property[0].to.check',
     VALUE_TO_CHECK: 'some value to be checked', // if you want to check selector value
     SCENARIO: scenarios.RESPONSE_CONTAINS,
-    MESSAGE_FORMAT: ({ url, $body }) => `
-      ${url}\n\n
-      ${$body
-        .find('h1')
-        .text()
-        .replace(/\\r?\\n|\\r|\\t/gm, '')
-        .trim()}
+    MESSAGE_FORMAT: ({
+      Config,
+      expectedValue,
+      response,
+      $selectedHtml,
+      jsonSelectorValue,
+    }) => `
+      ${Config.HTTP.URL}\n
+      ${Config.HTTP.METHOD}\n
+      ${Config.HTTP.PARSE_MODE}}\n\n
+      
+      ${$selectedHtml.text()}\n\n
     `,
   },
   EMAIL: {

@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import { utils } from './utils';
 
 export const http = {

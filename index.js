@@ -22,17 +22,27 @@ const PulseMonitor = {
       method: METHOD,
     });
 
-    let $selectedHtml; // cheerio object
+    let $selectedHtml = {}; // cheerio object
     let jsonValue; // json path value
 
     if (PARSE_MODE === 'HTML') {
       if (!HTML_SELECTOR) {
         throw new Error('HTML_SELECTOR is required when using HTML parse mode');
       }
+      if (SCENARIO.startsWith('JSON_')) {
+        throw new Error(
+          'JSON scenarios are not supported when using HTML parse mode'
+        );
+      }
       $selectedHtml = await response.parseHtml(responseText, HTML_SELECTOR);
     } else if (PARSE_MODE === 'JSON') {
       if (!JSON_SELECTOR) {
         throw new Error('JSON_SELECTOR is required when using JSON parse mode');
+      }
+      if (SCENARIO.startsWith('HTML_')) {
+        throw new Error(
+          'HTML scenarios are not supported when using JSON parse mode'
+        );
       }
       jsonValue = response.parseJson(responseText, JSON_SELECTOR);
     }
@@ -42,7 +52,6 @@ const PulseMonitor = {
       expectedValue: VALUE_TO_CHECK,
       response: responseText,
       $selectedHtml,
-      htmlSelectorContent: $selectedHtml.text(),
       jsonSelectorValue: jsonValue,
     };
 
