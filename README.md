@@ -18,7 +18,7 @@ Supported data sources:
 | Data Source    | Supported |
 |----------------|-----------|
 | Rest API(json) | ✅         |
-| Website(HTMl)  | ✅         |
+| Website(HTML)  | ✅         |
 | Website(Text)  | ✅         |
 | GraphQL        | ❌         |
 | Socket         | ❌         |
