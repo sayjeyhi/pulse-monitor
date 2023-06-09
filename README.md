@@ -1,3 +1,5 @@
+### ⚠️ Under active development, may not work correctly
+
 # Pulse Monitor
 > ⚡️A fast bun based checker/crawler/monitor tool which runs for free on github
 
