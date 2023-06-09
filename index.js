@@ -23,6 +23,7 @@ const PulseMonitor = {
       SCENARIO,
       VALUE_TO_CHECK,
       MESSAGE_FORMATTER,
+      FAILURE_MESSAGE_FORMATTER,
     } = HTTP_CONFIG;
     const responseText = await http.call({
       url: URL,
@@ -75,6 +76,13 @@ const PulseMonitor = {
       await notifier.propagate(params);
     } else {
       utils.log('No notification needed');
+      if (Config.NOTIFY_SCENARIO_FAILURES) {
+        utils.log('Failure notifications enabled');
+        await notifier.propagate({
+          ...params,
+          formatter: FAILURE_MESSAGE_FORMATTER,
+        });
+      }
     }
   },
 };

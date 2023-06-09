@@ -28,6 +28,17 @@ export default {
         `${HTTP.METHOD}\n` +
         `${HTTP.PARSE_MODE}\n\n` +
         `${$selectedHtml.text().substring(0, 100)}\n`,
+      FAILURE_MESSAGE_FORMATTER: ({
+        HTTP,
+        expectedValue,
+        response,
+        $selectedHtml,
+        jsonSelectorValue,
+      }) =>
+        `${HTTP.URL}\n` +
+        `${HTTP.METHOD}\n` +
+        `${HTTP.PARSE_MODE}\n\n` +
+        `${$selectedHtml.text().substring(0, 100)}\n`,
     },
   ],
   EMAIL: {
