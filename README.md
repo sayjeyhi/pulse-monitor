@@ -25,30 +25,30 @@ Supported data sources:
 
 Supported scenarios:
 
-| Scenario                           | Description                                                               |
-|------------------------------------|---------------------------------------------------------------------------|
-| RESPONSE_EQUAL                     | If the http call response is *equal* to some value                        |
-| RESPONSE_NOT_EQUAL                 | If the http call response is *not equal* to some value                    |
-| RESPONSE_GREATER_THAN              | If the http call response cascade to number is *greater than some value*  |
-| RESPONSE_LOWER_THAN                | If the http call response cascade to number is *lower* than some value*   |
-| RESPONSE_CONTAINS                  | If the http call response *contains* some value                           |
-| RESPONSE_NOT_CONTAINS              | If the http call response does *not* contains some value                  |
-| HTML_SELECTOR_EXIST                | If the HTML selector in http call response *exists*                       |
-| HTML_SELECTOR_NOT_EXIST            | If the HTML selector in http call response *does not exist*               |
-| HTML_SELECTOR_CONTENT_EQUAL        | If the HTML selector value is *equal* to some value                       |
-| HTML_SELECTOR_CONTENT_NOT_EQUAL    | If the HTML selector value is *not equal* to some value                   |
-| HTML_SELECTOR_CONTENT_GREATER_THAN | If the HTML selector value cascade to number is *greater than some value* |
-| HTML_SELECTOR_CONTENT_LOWER_THAN   | If the HTML selector value cascade to number is *lower than some value*   |
-| HTML_SELECTOR_CONTENT_CONTAINS     | ✅                                                                         |
-| HTML_SELECTOR_CONTENT_NOT_CONTAINS | ✅                                                                         |
-| JSON_SELECTOR_CONTENT_EXIST        | ✅                                                                         |
-| JSON_SELECTOR_CONTENT_NOT_EXIST    | ✅                                                                         |
-| JSON_SELECTOR_CONTENT_EQUAL        | ✅                                                                         |
-| JSON_SELECTOR_CONTENT_NOT_EQUAL    | ✅                                                                         |
-| JSON_SELECTOR_CONTENT_GREATER_THAN | ✅                                                                         |
-| JSON_SELECTOR_CONTENT_LOWER_THAN   | ✅                                                                         |
-| JSON_SELECTOR_CONTENT_CONTAINS     | ✅                                                                         |
-| JSON_SELECTOR_CONTENT_NOT_CONTAINS | ✅                                                                         |
+| Scenario                           | Description                                                                 |
+|------------------------------------|-----------------------------------------------------------------------------|
+| RESPONSE_EQUAL                     | If the http call response is **equal** to some value                        |
+| RESPONSE_NOT_EQUAL                 | If the http call response is **not equal** to some value                    |
+| RESPONSE_GREATER_THAN              | If the http call response cascade to number is **greater than some value**  |
+| RESPONSE_LOWER_THAN                | If the http call response cascade to number is **lower** than some value**  |
+| RESPONSE_CONTAINS                  | If the http call response **contains** some value                           |
+| RESPONSE_NOT_CONTAINS              | If the http call response does **not** contains some value                  |
+| HTML_SELECTOR_EXIST                | If the HTML selector in http call response **exists**                       |
+| HTML_SELECTOR_NOT_EXIST            | If the HTML selector in http call response **does not exist**               |
+| HTML_SELECTOR_CONTENT_EQUAL        | If the HTML selector value is **equal** to some value                       |
+| HTML_SELECTOR_CONTENT_NOT_EQUAL    | If the HTML selector value is **not equal** to some value                   |
+| HTML_SELECTOR_CONTENT_GREATER_THAN | If the HTML selector value cascade to number is **greater than some value** |
+| HTML_SELECTOR_CONTENT_LOWER_THAN   | If the HTML selector value cascade to number is **lower than some value**   |
+| HTML_SELECTOR_CONTENT_CONTAINS     | If the HTML selector value **contains** some value                          |
+| HTML_SELECTOR_CONTENT_NOT_CONTAINS | If the HTML selector value **does not contains** some value                 |
+| JSON_SELECTOR_CONTENT_EXIST        | If the JSON selector path **exists**                                        |
+| JSON_SELECTOR_CONTENT_NOT_EXIST    | If the JSON selector path does **not** exists                               |
+| JSON_SELECTOR_CONTENT_EQUAL        | If the JSON selector value is **equal** to some value                       |
+| JSON_SELECTOR_CONTENT_NOT_EQUAL    | If the JSON selector value is **not equal** to some value                   |
+| JSON_SELECTOR_CONTENT_GREATER_THAN | If the JSON selector value cascade to number is **greater** than some value |
+| JSON_SELECTOR_CONTENT_LOWER_THAN   | If the JSON selector value cascade to number is **lower** than some value   |
+| JSON_SELECTOR_CONTENT_CONTAINS     | If the JSON selector value **contains** some value                          |
+| JSON_SELECTOR_CONTENT_NOT_CONTAINS | If the JSON selector value **does not contains** some value                 |
 
 Supported notification methods:
 
