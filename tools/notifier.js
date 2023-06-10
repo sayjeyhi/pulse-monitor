@@ -25,6 +25,7 @@ export const notifier = {
     for (const channel in channels) {
       utils.log(`📣 Notifying ${channel}...`);
       if (Config[channel.toUpperCase()] && Config[channel.toUpperCase()].ENABLED) {
+        await channels[channel].validate({ text: message });
         await channels[channel].send({ text: message });
       } else {
         utils.log(' - ❌  Channel disabled');

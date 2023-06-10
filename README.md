@@ -1,7 +1,7 @@
 ### ⚠️ Under active development, may not work correctly
 
 # Pulse Monitor
-> ⚡️A fast bun based checker/crawler/monitor tool which runs for free on github
+> ⚡️A fast bun-based checker/crawler/monitor tool that runs for free on Github actions
 
 ![banner.png](assets/banner.png)
 
@@ -159,7 +159,6 @@ Then change the email address and password in the `config.js` file.
     PORT: 465,
     SECURE: true,
     SUBJECT: 'New Items',
-    FAILURE_SUBJECT: 'New Items',
     TO: ['your@email.com', 'another@email.com'],
   }
 }
@@ -193,6 +192,25 @@ The configuration can be enabled using `config.js` file, also you need to change
     CHANNEL_ID: 'YOUR_SLACK_CHANNEL_ID',
   }
 }
+```
+
+### Webhook
+
+You can have your own API to be called when the crawler finds a new item. You can enable this feature using `config.js` file.
+
+```javascript
+{
+  WEBHOOK: {
+    ENABLED: true,
+    METHOD: 'POST'
+  }
+}
+```
+
+Set the webhook url and the x-api-key in the `.env` file.
+```javascript
+WEBHOOK_URL="your-webhook-url"
+WEBHOOK_X_API_KEY="your-webhook-x-api-key"
 ```
 
 ### Whatsapp (soon)

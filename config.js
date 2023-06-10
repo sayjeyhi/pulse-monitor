@@ -47,8 +47,15 @@ export default {
     PORT: 465,
     SECURE: true,
     SUBJECT: 'New Items',
-    FAILURE_SUBJECT: 'New Items',
     TO: ['your@email.com', 'another@email.com'],
+  },
+  TELEGRAM: {
+    ENABLED: true,
+    CHAT_IDS: ['YOUR_TELEGRAM_CHAT_ID'],
+  },
+  WEBHOOK: {
+    ENABLED: true,
+    METHOD: 'POST',
   },
   FACEBOOK: {
     ENABLED: false,
@@ -60,17 +67,8 @@ export default {
   SMS: {
     ENABLED: false,
   },
-  TELEGRAM: {
-    ENABLED: true,
-    CHAT_IDS: ['YOUR_TELEGRAM_CHAT_ID'],
-  },
   TWITTER: {
     ENABLED: false,
-  },
-  WEBHOOK: {
-    ENABLED: true,
-    CALL_URL: 'YOUR_WEBHOOK_URL',
-    FAILURE_CALL_URL: 'YOUR_FAILURE_WEBHOOK_URL',
   },
   WHATSAPP: {
     ENABLED: false,
