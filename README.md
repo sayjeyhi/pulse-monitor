@@ -1,6 +1,7 @@
 ### ⚠️ Under active development, may not work correctly
 
 # Pulse Monitor
+
 > ⚡️A fast bun-based checker/crawler/monitor tool that runs for free on Github actions
 
 ![banner.png](assets/banner.png)
@@ -14,6 +15,7 @@
 - You can monitor the number of followers on a social network and receive notifications when it changes.
 
 ### Features
+
 Supported data sources:
 
 | Data Source    | Supported |
@@ -65,7 +67,6 @@ Supported notification methods:
 | Webhook  | ✅         |
 | Whatsapp | ❌         |
 
-
 ## How to use
 
 There are two ways to use this crawler.
@@ -84,7 +85,6 @@ But first:
 - Then per each notification method you need to change the configuration.
 
 ### HTTP configuration
-
 
 | Feature                   | Description                                          | Supported values |
 |---------------------------|------------------------------------------------------|------------------|
@@ -135,7 +135,7 @@ This configuration is common for all notification methods, and lives in the `con
         `${HTTP.PARSE_MODE}\n\n` +
         `${$selectedHtml.text().substring(0, 100)}\n`,
     },
-  ]
+  ];
 }
 ```
 
@@ -207,9 +207,10 @@ You can have your own API to be called when the crawler finds a new item. You ca
 ```
 
 Set the webhook url and the x-api-key in the `.env` file.
+
 ```javascript
-WEBHOOK_URL="your-webhook-url"
-WEBHOOK_X_API_KEY="your-webhook-x-api-key"
+WEBHOOK_URL = 'your-webhook-url';
+WEBHOOK_X_API_KEY = 'your-webhook-x-api-key';
 ```
 
 ### Twitter
@@ -242,14 +243,16 @@ Then change the api key and api secret key in the `config.js` file.
 
 1. Create a Facebook App on the Facebook Developer Portal (https://developers.facebook.com/) and obtain an App ID and App Secret.
 
-2. Generate a user access token with the required permissions (such as "pages_*") for posting on behalf of the user. You can do this by following the Facebook API documentation (https://developers.facebook.com/docs/facebook-login/access-tokens/).
+2. Generate a user access token with the required permissions (such as "pages\_\*") for posting on behalf of the user. You can do this by following the Facebook API documentation (https://developers.facebook.com/docs/facebook-login/access-tokens/).
 
 3. Set up env variables: Set the following environment variables in your .env file:
+
 ```javascript
-FACEBOOK_ACCESS_TOKEN="your-facebook-access-token"
+FACEBOOK_ACCESS_TOKEN = 'your-facebook-access-token';
 ```
 
 ### Discord
+
 You can use [Discord](https://discord.com/) to send notifications. You need to create a discord account and get the webhook url. You can create a discord account and get the webhook url from [here](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks).
 
 The configuration can be enabled using `config.js` file.
@@ -261,9 +264,9 @@ The configuration can be enabled using `config.js` file.
   }
 }
 ```
+
 `DISCORD_WEBHOOK_URL` is the webhook url you get from discord, and you need to put it in the `.env` file. (check the `.env.example` file)
 You can change the channel id in the Webhook URL.
-
 
 ### Whatsapp (soon)
 
@@ -298,6 +301,7 @@ The configuration can be enabled using `config.js` file.
 [![Twitter Follow](https://img.shields.io/twitter/follow/sayjeyhi?style=social)](https://twitter.com/sayjeyhi) [![GitHub followers](https://img.shields.io/github/followers/sayjeyhi?style=social)](https://github.com/sayjeyhi) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Jafar--Rezaei-blue)](https://www.linkedin.com/in/jafar-rezaei/)
 
 ### Todos
+
 - [ ] Support graphql endpoint calls
 - [ ] Support socket endpoint calls
 - [ ] Support webhooks
