@@ -3,7 +3,7 @@ import Config from '../config';
 
 export const slack = {
   validate(parms) {
-    utils.log(`Validating required values`);
+    utils.log(`➡️  Validating...`);
     const { SLACK_URL, SLACK_TOKEN } = process.env;
     if (!SLACK_URL || !SLACK_TOKEN) {
       throw new Error(
@@ -11,10 +11,7 @@ export const slack = {
       );
     }
   },
-  send({ text }) {
-    utils.log(' - Sending message to Slack...');
-
-    // Define the Slack API endpoint and the necessary parameters
+  async send({ text }) {
     const slackEndpoint = `${process.env.SLACK_URL}/api/chat.postMessage`;
 
     // Create the request payload
@@ -24,26 +21,19 @@ export const slack = {
     });
 
     // Send the request to the Slack API
-    fetch(slackEndpoint, {
+    const response = await fetch(slackEndpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${process.env.SLACK_TOKEN}`,
         'Content-Length': postData.length,
       },
-    })
-      .then((res) => {
-        res.on('data', (data) => {
-          const response = JSON.parse(data);
-          if (response.ok) {
-            console.log('Message sent successfully:', response.ts);
-          } else {
-            console.error('Error sending message to Slack:', response.error);
-          }
-        });
-      })
-      .catch((error) => {
-        console.error('Error sending request to Slack:', error);
-      });
+    });
+    const res = await response.json();
+    if (res.ok) {
+      console.log('Message sent successfully:', res.ts);
+    } else {
+      throw new Error('Error sending message to Slack:' + res.error);
+    }
   },
 };

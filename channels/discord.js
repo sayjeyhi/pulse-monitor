@@ -1,17 +1,15 @@
 import { utils } from '../tools/utils';
 
-export const sms = {
+export const discord = {
   validate(parms) {
-    utils.log(`Validating required values`);
+    utils.log(`➡️  Validating...`);
     const { DISCORD_WEBHOOK_URL } = process.env;
     if (!DISCORD_WEBHOOK_URL) {
       throw new Error('DISCORD_WEBHOOK_URL is required when using Discord channel');
     }
   },
-  send({ text }) {
-    utils.log(' - Sending message to discord...');
-
-    fetch(process.env.DISCORD_WEBHOOK_URL, {
+  async send({ text }) {
+    await fetch(process.env.DISCORD_WEBHOOK_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -19,12 +17,6 @@ export const sms = {
       body: JSON.stringify({
         content: text,
       }),
-    })
-      .then((response) => {
-        utils.log(`Status: ${response.status}`);
-      })
-      .catch((error) => {
-        console.error(`Error: ${error}`);
-      });
+    });
   },
 };

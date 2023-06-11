@@ -2,7 +2,7 @@ import { utils } from '../tools/utils';
 
 export const twitter = {
   validate(parms) {
-    utils.log(`Validating required values`);
+    utils.log(`➡️  Validating...`);
     const {
       TWITTER_CONSUMER_KEY,
       TWITTER_CONSUMER_SECRET,
@@ -21,8 +21,7 @@ export const twitter = {
       );
     }
   },
-  send({ text }) {
-    utils.log(' - Sending tweet...');
+  async send({ text }) {
     const {
       TWITTER_CONSUMER_KEY,
       TWITTER_CONSUMER_SECRET,
@@ -83,20 +82,14 @@ export const twitter = {
       .join(', ')}`;
 
     // Send the request
-    fetch(url, {
+    const response = await fetch(url, {
       method,
       headers: {
         Authorization: authorizationHeader,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: `status=${encodeURIComponent(text)}`,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        utils.log('Tweet sent successfully!', data);
-      })
-      .catch((error) => {
-        utils.log('Error:', error);
-      });
+    });
+    await response.json();
   },
 };

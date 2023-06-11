@@ -23,45 +23,37 @@ export default {
         response,
         $selectedHtml,
         jsonSelectorValue,
-      }) =>
-        `${HTTP.URL}\n` +
-        `${HTTP.METHOD}\n` +
-        `${HTTP.PARSE_MODE}\n\n` +
-        `${$selectedHtml.text().substring(0, 100)}\n`,
+      }) => `${HTTP.URL}\n` + `${$selectedHtml.text().substring(0, 100)}\n`,
       FAILURE_MESSAGE_FORMATTER: ({
         HTTP,
         expectedValue,
         response,
         $selectedHtml,
         jsonSelectorValue,
-      }) =>
-        `${HTTP.URL}\n` +
-        `${HTTP.METHOD}\n` +
-        `${HTTP.PARSE_MODE}\n\n` +
-        `${$selectedHtml.text().substring(0, 100)}\n`,
+      }) => `${HTTP.URL}\n` + `${$selectedHtml.text().substring(0, 100)}\n`,
     },
   ],
   EMAIL: {
-    ENABLED: true,
+    ENABLED: false,
     HOST: 'smtp.gmail.com',
     PORT: 465,
     SECURE: true,
     SUBJECT: 'New Items',
     TO: ['your@email.com', 'another@email.com'],
   },
+  WEBHOOK: {
+    ENABLED: false,
+    METHOD: 'POST',
+  },
   TELEGRAM: {
     ENABLED: true,
     CHAT_IDS: ['YOUR_TELEGRAM_CHAT_ID'],
   },
-  WEBHOOK: {
-    ENABLED: true,
-    METHOD: 'POST',
-  },
   FACEBOOK: {
-    ENABLED: false,
+    ENABLED: true,
   },
   SLACK: {
-    ENABLED: true,
+    ENABLED: false,
     CHANNEL_ID: 'YOUR_SLACK_CHANNEL_ID',
   },
   SMS: {

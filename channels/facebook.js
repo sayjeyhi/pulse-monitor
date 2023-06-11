@@ -2,7 +2,7 @@ import { utils } from '../tools/utils';
 
 export const facebook = {
   validate(parms) {
-    utils.log(`Validating required values`);
+    utils.log(`➡️  Validating...`);
     const { FACEBOOK_ACCESS_TOKEN } = process.env;
     if (!FACEBOOK_ACCESS_TOKEN) {
       throw new Error(
@@ -10,26 +10,16 @@ export const facebook = {
       );
     }
   },
-  send({ text }) {
-    utils.log(' - Sending status to Facebook...');
+  async send({ text }) {
     const { FACEBOOK_ACCESS_TOKEN } = process.env;
 
-    fetch(
+    await fetch(
       `https://graph.facebook.com/me/feed?message=${encodeURIComponent(
         text
       )}&access_token=${FACEBOOK_ACCESS_TOKEN}`,
       {
         method: 'POST',
       }
-    )
-      .then((response) => {
-        utils.log('Status posted successfully on Facebook!');
-      })
-      .catch((error) => {
-        console.error(
-          'Error posting to Facebook:',
-          error.response.data.error.message
-        );
-      });
+    );
   },
 };

@@ -19,7 +19,8 @@ export const http = {
       });
       return await response.text();
     } catch (e) {
-      utils.log('🚫 Error loading page:', e.message);
+      utils.log('🚫 Error calling URL!');
+      throw e;
     }
   },
 };

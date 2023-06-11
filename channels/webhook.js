@@ -3,7 +3,7 @@ import { utils } from '../tools/utils';
 
 export const webhook = {
   validate(parms) {
-    utils.log(`Validating required values`);
+    utils.log(`➡️  Validating...`);
     const { WEBHOOK_URL, WEBHOOK_X_API_KEY } = process.env;
     if (!WEBHOOK_URL || !WEBHOOK_X_API_KEY) {
       throw new Error(
@@ -12,7 +12,6 @@ export const webhook = {
     }
   },
   async send({ text, html }) {
-    utils.log(' - Calling webhook...');
     await http.call({
       url: process.env.WEBHOOK_URL,
       method: 'POST',

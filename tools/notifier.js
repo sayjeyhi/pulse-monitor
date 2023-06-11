@@ -18,17 +18,17 @@ export const notifier = {
     utils.log(' - text:', params.response.substring(0, 100) + '...');
 
     const message = params.formatter({ ...params });
-    utils.log('➡️ Message: "');
-    console.log(message + '"');
-
-    utils.logLineBreak();
     for (const channel in channels) {
-      utils.log(`📣 Notifying ${channel}...`);
-      if (Config[channel.toUpperCase()] && Config[channel.toUpperCase()].ENABLED) {
-        await channels[channel].validate({ text: message });
-        await channels[channel].send({ text: message });
-      } else {
-        utils.log(' - ❌  Channel disabled');
+      try {
+        if (Config[channel.toUpperCase()] && Config[channel.toUpperCase()].ENABLED) {
+          utils.logLineBreak();
+          utils.logTitle(`📣 Notifying ${channel}...`);
+          await channels[channel].validate({ text: message });
+          await channels[channel].send({ text: message });
+          utils.log(`🎉 ${channel} message sent`);
+        }
+      } catch (e) {
+        utils.log(` - ❌  ${e.message}`);
       }
     }
   },

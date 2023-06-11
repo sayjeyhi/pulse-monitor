@@ -106,7 +106,7 @@ This configuration is common for all notification methods, and lives in the `con
       URL: 'https://google.com',
       METHOD: 'GET',
       PARSE_MODE: parseModes.HTML,
-      HTML_SELECTOR: 'title',
+      HTML_SELECTOR: '.title > a:nth-child(1)',
       JSON_SELECTOR: '.property[0].to.check',
       VALUE_TO_CHECK: 'some value to be checked', // if you want to check selector value
       SCENARIO: scenarios.RESPONSE_NOT_CONTAINS,
@@ -116,22 +116,14 @@ This configuration is common for all notification methods, and lives in the `con
         response,
         $selectedHtml,
         jsonSelectorValue,
-      }) =>
-        `${HTTP.URL}\n` +
-        `${HTTP.METHOD}\n` +
-        `${HTTP.PARSE_MODE}\n\n` +
-        `${$selectedHtml.text().substring(0, 100)}\n`,
+      }) => `${HTTP.URL}\n` + `${$selectedHtml.text().substring(0, 100)}\n`,
       FAILURE_MESSAGE_FORMATTER: ({
         HTTP,
         expectedValue,
         response,
         $selectedHtml,
         jsonSelectorValue,
-      }) =>
-        `${HTTP.URL}\n` +
-        `${HTTP.METHOD}\n` +
-        `${HTTP.PARSE_MODE}\n\n` +
-        `${$selectedHtml.text().substring(0, 100)}\n`,
+      }) => `${HTTP.URL}\n` + `${$selectedHtml.text().substring(0, 100)}\n`,
     },
   ];
 }

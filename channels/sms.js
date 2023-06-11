@@ -2,9 +2,7 @@ import { utils } from '../tools/utils';
 
 export const sms = {
   validate(parms) {
-    utils.log(`Validating required values`);
+    utils.log(`➡️  Validating...`);
   },
-  send({ text, html }) {
-    utils.log(' - Sending SMS...');
-  },
+  async send({ text, html }) {},
 };

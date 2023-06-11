@@ -3,7 +3,7 @@ import Config from '../config';
 
 export const telegram = {
   validate(parms) {
-    utils.log(`Validating required values`);
+    utils.log(`➡️  Validating...`);
 
     const { TELEGRAM_BOT_TOKEN } = process.env;
     if (!TELEGRAM_BOT_TOKEN) {
@@ -13,21 +13,16 @@ export const telegram = {
   async send({ text, to }) {
     if (!to || !to.length) to = Config.TELEGRAM.CHAT_IDS;
 
-    utils.log(`Sending message to telegram: ${to.join(',')}`);
-    try {
-      to.map(async (chat_id) => {
-        await fetch(
-          `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${chat_id}&text=${text}`,
-          {
-            method: 'GET',
-          }
-        );
+    utils.log(`Sending message to: ${to.join(',')}`);
 
-        // todo: increase hits or add
-      });
-    } catch (e) {
-      utils.log('Error sending Telegram message: ', e.message);
-    }
+    to.map(async (chat_id) => {
+      await fetch(
+        `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${chat_id}&text=${text}`,
+        {
+          method: 'GET',
+        }
+      );
+    });
   },
   async _giveChatId() {
     utils.log(`Getting updates`);
