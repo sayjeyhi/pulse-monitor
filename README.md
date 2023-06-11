@@ -58,11 +58,11 @@ Supported notification methods:
 |----------|-----------|
 | Discord  | ❌         |
 | Email    | ✅         |
-| Facebook | ❌         |
-| Slack    | ❌         |
+| Facebook | ✅         |
+| Slack    | ✅         |
 | SMS      | ❌         |
 | Telegram | ✅         |
-| Twitter  | ❌         |
+| Twitter  | ✅         |
 | Webhook  | ✅         |
 | Whatsapp | ❌         |
 
@@ -253,6 +253,15 @@ Then change the api key and api secret key in the `config.js` file.
     ENABLED: false,
   }
 }
+```
+
+1. Create a Facebook App on the Facebook Developer Portal (https://developers.facebook.com/) and obtain an App ID and App Secret.
+
+2. Generate a user access token with the required permissions (such as "pages_*") for posting on behalf of the user. You can do this by following the Facebook API documentation (https://developers.facebook.com/docs/facebook-login/access-tokens/).
+
+3. Set up env variables: Set the following environment variables in your .env file:
+```javascript
+FACEBOOK_ACCESS_TOKEN="your-facebook-access-token"
 ```
 
 ### SMS (soon)
