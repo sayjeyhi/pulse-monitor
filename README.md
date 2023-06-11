@@ -5,7 +5,6 @@
 
 ![banner.png](assets/banner.png)
 
-
 ### Use cases
 
 - This tool allows you to retrieve website data and receive notifications when some condition met.
@@ -56,7 +55,7 @@ Supported notification methods:
 
 | Method   | Supported |
 |----------|-----------|
-| Discord  | ❌         |
+| Discord  | ✅         |
 | Email    | ✅         |
 | Facebook | ✅         |
 | Slack    | ✅         |
@@ -213,21 +212,7 @@ WEBHOOK_URL="your-webhook-url"
 WEBHOOK_X_API_KEY="your-webhook-x-api-key"
 ```
 
-### Whatsapp (soon)
-
-You need to create a whatsapp app and get the webhook url. You can create a whatsapp app and get the webhook url from [here](https://developers.facebook.com/docs/whatsapp/api/webhooks).
-
-The configuration can be enabled using `config.js` file.
-
-```javascript
-{
-  WHATSAPP: {
-    ENABLED: false,
-  }
-}
-```
-
-### Twitter (soon)
+### Twitter
 
 You need to create a Twitter app and get the api key and api secret key. You can create a twitter app and get the api key and api secret key from [here](https://developer.twitter.com/en/portal/projects-and-apps).
 
@@ -241,7 +226,7 @@ The configuration can be enabled using `config.js` file.
 }
 ```
 
-### Facebook (soon)
+### Facebook
 
 You need to create a facebook app and get the api key and api secret key. You can create a facebook app and get the api key and api secret key from [here](https://developers.facebook.com/apps/).
 
@@ -264,20 +249,7 @@ Then change the api key and api secret key in the `config.js` file.
 FACEBOOK_ACCESS_TOKEN="your-facebook-access-token"
 ```
 
-### SMS (soon)
-You can use [Twilio](https://www.twilio.com/) to send SMS notifications. You need to create a twilio account and get the account sid and auth token. You can create a twilio account and get the account sid and auth token from [here](https://www.twilio.com/try-twilio).
-
-The configuration can be enabled using `config.js` file.
-
-```javascript
-{
-  SMS: {
-    ENABLED: false,
-  }
-}
-```
-
-### Discord (soon)
+### Discord
 You can use [Discord](https://discord.com/) to send notifications. You need to create a discord account and get the webhook url. You can create a discord account and get the webhook url from [here](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks).
 
 The configuration can be enabled using `config.js` file.
@@ -285,6 +257,37 @@ The configuration can be enabled using `config.js` file.
 ```javascript
 {
   Discord: {
+    ENABLED: false,
+  }
+}
+```
+`DISCORD_WEBHOOK_URL` is the webhook url you get from discord, and you need to put it in the `.env` file. (check the `.env.example` file)
+You can change the channel id in the Webhook URL.
+
+
+### Whatsapp (soon)
+
+You need to create a whatsapp app and get the webhook url. You can create a whatsapp app and get the webhook url from [here](https://developers.facebook.com/docs/whatsapp/api/webhooks).
+
+The configuration can be enabled using `config.js` file.
+
+```javascript
+{
+  WHATSAPP: {
+    ENABLED: false,
+  }
+}
+```
+
+### SMS (soon)
+
+You can use [Twilio](https://www.twilio.com/) to send SMS notifications. You need to create a twilio account and get the account sid and auth token. You can create a twilio account and get the account sid and auth token from [here](https://www.twilio.com/try-twilio).
+
+The configuration can be enabled using `config.js` file.
+
+```javascript
+{
+  SMS: {
     ENABLED: false,
   }
 }
