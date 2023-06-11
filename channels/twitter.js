@@ -1,4 +1,4 @@
-import { utils } from '../tools/utils';
+import { utils } from '../tools/utils.js';
 
 export const twitter = {
   validate(parms) {

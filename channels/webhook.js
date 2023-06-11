@@ -1,5 +1,5 @@
-import { http } from '../tools/http';
-import { utils } from '../tools/utils';
+import { http } from '../tools/http.js';
+import { utils } from '../tools/utils.js';
 
 export const webhook = {
   validate(parms) {

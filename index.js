@@ -1,12 +1,14 @@
 import dotenv from 'dotenv';
-import { response } from './tools/response';
-import { notifier } from './tools/notifier';
-import { http } from './tools/http';
-import { utils } from './tools/utils';
-import { scenarioHandlers } from './constants/scenarioHandlers';
-import Config from './config';
+import { response } from './tools/response.js';
+import { notifier } from './tools/notifier.js';
+import { http } from './tools/http.js';
+import { utils } from './tools/utils.js';
+import { scenarioHandlers } from './constants/scenarioHandlers.js';
+import { environment } from './tools/environment.js';
+import Config from './config.js';
 
 dotenv.config();
+environment.loadPolyfills();
 utils.printLogo();
 
 /**

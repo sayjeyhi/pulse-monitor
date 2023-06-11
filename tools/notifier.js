@@ -1,6 +1,6 @@
-import { utils } from './utils';
-import Config from '../config';
-import * as channels from '../channels';
+import { utils } from './utils.js';
+import Config from '../config.js';
+import * as channels from '../channels/index.js';
 
 export const notifier = {
   /**

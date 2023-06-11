@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
-import { utils } from '../tools/utils';
-import Config from '../config';
+import { utils } from '../tools/utils.js';
+import Config from '../config.js';
 
 export const email = {
   validate(parms) {

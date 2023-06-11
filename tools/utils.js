@@ -1,5 +1,5 @@
-import Config from '../config';
-import { cliColours } from '../constants/cliColors';
+import Config from '../config.js';
+import { cliColours } from '../constants/cliColors.js';
 
 export const utils = {
   printLogo() {
