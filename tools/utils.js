@@ -1,4 +1,5 @@
 import Config from '../config';
+import { cliColours } from '../constants/cliColors';
 
 export const utils = {
   printLogo() {
@@ -18,6 +19,10 @@ export const utils = {
   log(...params) {
     if (!Config.DEBUG) return;
     console.log(' ', ...params);
+  },
+  logTitle(title) {
+    if (!Config.DEBUG) return;
+    console.log(cliColours.bg.black, cliColours.fg.white, title, cliColours.reset);
   },
   logLineBreak() {
     utils.log('----------------------------------');
