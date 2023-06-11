@@ -300,3 +300,4 @@ The configuration can be enabled using `config.js` file.
 ## License
 
 MIT
+
