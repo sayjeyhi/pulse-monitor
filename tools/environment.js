@@ -1,4 +1,4 @@
-import fetch2 from 'node-fetch';
+import fetchPolyfill from 'node-fetch';
 
 export const environment = {
   isBun() {
@@ -8,6 +8,6 @@ export const environment = {
     if (this.isBun()) return;
 
     // eslint-disable-next-line no-undef
-    global.fetch = fetch2;
+    global.fetch = fetchPolyfill;
   },
 };

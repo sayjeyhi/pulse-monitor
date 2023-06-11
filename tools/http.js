@@ -10,7 +10,10 @@ export const http = {
    * @returns {Promise<string>}
    */
   async call({ url, method = 'GET', headers = {}, ...rest }) {
-    utils.log(`🌎 HTTP Calling URL: ${url}`);
+    utils.logTitle(
+      `🌎 HTTP Calling URL: ${url.replace('https://', '').replace('http://', '')}`,
+      { bg: 'yellow', fg: 'black' }
+    );
     try {
       const response = await fetch(url, {
         method,

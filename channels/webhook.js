@@ -3,7 +3,6 @@ import { utils } from '../tools/utils.js';
 
 export const webhook = {
   validate(parms) {
-    utils.log(`➡️  Validating...`);
     const { WEBHOOK_URL, WEBHOOK_X_API_KEY } = process.env;
     if (!WEBHOOK_URL || !WEBHOOK_X_API_KEY) {
       throw new Error(

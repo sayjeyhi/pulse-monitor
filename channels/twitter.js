@@ -2,7 +2,6 @@ import { utils } from '../tools/utils.js';
 
 export const twitter = {
   validate(parms) {
-    utils.log(`➡️  Validating...`);
     const {
       TWITTER_CONSUMER_KEY,
       TWITTER_CONSUMER_SECRET,

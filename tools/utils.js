@@ -13,19 +13,23 @@ export const utils = {
                                                                                                      
 
     
- - version: ${Config.VERSION}   
- ===============================================================`);
+`);
+    utils.logSecondary(`- version: ${Config.VERSION}\n\n`);
   },
   log(...params) {
     if (!Config.DEBUG) return;
     console.log(' ', ...params);
   },
-  logTitle(title) {
+  logTitle(title, { bg, fg } = { bg: 'black', fg: 'white' }) {
     if (!Config.DEBUG) return;
-    console.log(cliColours.bg.black, cliColours.fg.white, title, cliColours.reset);
+    console.log(cliColours.bg[bg], cliColours.fg[fg], title, cliColours.reset);
+  },
+  logSecondary(text) {
+    if (!Config.DEBUG) return;
+    console.log(cliColours.fg.gray, text, cliColours.reset);
   },
   logLineBreak() {
-    utils.log('----------------------------------');
+    utils.logSecondary('----------------------------------');
   },
   makeHash(data) {
     const hasher = new Bun.CryptoHasher('md5');

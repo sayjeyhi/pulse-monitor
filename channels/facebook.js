@@ -2,7 +2,6 @@ import { utils } from '../tools/utils.js';
 
 export const facebook = {
   validate(parms) {
-    utils.log(`➡️  Validating...`);
     const { FACEBOOK_ACCESS_TOKEN } = process.env;
     if (!FACEBOOK_ACCESS_TOKEN) {
       throw new Error(

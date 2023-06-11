@@ -3,8 +3,6 @@ import Config from '../config.js';
 
 export const telegram = {
   validate(parms) {
-    utils.log(`➡️  Validating...`);
-
     const { TELEGRAM_BOT_TOKEN } = process.env;
     if (!TELEGRAM_BOT_TOKEN) {
       throw new Error('TELEGRAM_BOT_TOKEN is required when using Telegram channel');

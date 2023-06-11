@@ -8,14 +8,19 @@ export const notifier = {
    * @returns {Promise<void>}
    */
   async propagate(params) {
-    utils.log('💬 Notifying with params:');
-    utils.log(' - expectedValue:', params.expectedValue);
-    utils.log(' - jsonSelectorValue:', params.jsonSelectorValue);
-    utils.log(
-      ' - htmlSelectorValue:',
-      params.$selectedHtml.text().substring(0, 100) + '...'
+    utils.logTitle('💬 Generating message with message fn', {
+      bg: 'blue',
+      fg: 'black',
+    });
+    utils.logSecondary(' Params:');
+    utils.logSecondary('   expectedValue: ' + params.expectedValue);
+    utils.logSecondary('   jsonSelectorValue: ' + params.jsonSelectorValue);
+    utils.logSecondary(
+      '   htmlSelectorValue: ' +
+        params.$selectedHtml.text().substring(0, 100) +
+        '...'
     );
-    utils.log(' - text:', params.response.substring(0, 100) + '...');
+    utils.logSecondary('   text: ' + params.response.substring(0, 100));
 
     const message = params.formatter({ ...params });
     for (const channel in channels) {
@@ -23,6 +28,7 @@ export const notifier = {
         if (Config[channel.toUpperCase()] && Config[channel.toUpperCase()].ENABLED) {
           utils.logLineBreak();
           utils.logTitle(`📣 Notifying ${channel}...`);
+          utils.logSecondary(`️ - Validating...`);
           await channels[channel].validate({ text: message });
           await channels[channel].send({ text: message });
           utils.log(`🎉 ${channel} message sent`);

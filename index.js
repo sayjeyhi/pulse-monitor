@@ -31,6 +31,9 @@ const PulseMonitor = {
       url: URL,
       method: METHOD,
     });
+    utils.log('🎉 Response received');
+    utils.logLineBreak();
+    utils.logTitle('🔎 Checking response...', { bg: 'blue', fg: 'black' });
 
     let $selectedHtml = {}; // cheerio object
     let jsonValue; // json path value
@@ -56,7 +59,7 @@ const PulseMonitor = {
       }
       jsonValue = response.parseJson(responseText, JSON_SELECTOR);
     } else {
-      utils.log('📄 Checking response text directly');
+      utils.logSecondary('📄 Checking response text directly');
     }
 
     const handler = scenarioHandlers[SCENARIO];
@@ -73,7 +76,7 @@ const PulseMonitor = {
      * If we have the needed conditions, propagate the notification
      */
     if (handler && handler(params)) {
-      utils.log('✅  Condition met');
+      utils.log('🎉 Condition met');
       utils.logLineBreak();
       await notifier.propagate(params);
     } else {

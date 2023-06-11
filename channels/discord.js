@@ -2,7 +2,6 @@ import { utils } from '../tools/utils.js';
 
 export const discord = {
   validate(parms) {
-    utils.log(`➡️  Validating...`);
     const { DISCORD_WEBHOOK_URL } = process.env;
     if (!DISCORD_WEBHOOK_URL) {
       throw new Error('DISCORD_WEBHOOK_URL is required when using Discord channel');

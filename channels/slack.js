@@ -3,7 +3,6 @@ import Config from '../config.js';
 
 export const slack = {
   validate(parms) {
-    utils.log(`➡️  Validating...`);
     const { SLACK_URL, SLACK_TOKEN } = process.env;
     if (!SLACK_URL || !SLACK_TOKEN) {
       throw new Error(

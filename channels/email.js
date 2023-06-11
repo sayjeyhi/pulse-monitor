@@ -4,8 +4,6 @@ import Config from '../config.js';
 
 export const email = {
   validate(parms) {
-    utils.log(`➡️  Validating...`);
-
     const { SEND_EMAIL_ADDRESS, SEND_EMAIL_PASSWORD } = process.env;
     if (!SEND_EMAIL_ADDRESS || !SEND_EMAIL_PASSWORD) {
       throw new Error(
