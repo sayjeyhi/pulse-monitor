@@ -33,6 +33,31 @@ export default {
       }) => `${HTTP.URL}\n` + `${$selectedHtml.text().substring(0, 100)}\n`,
     },
   ],
+  GRAPHQL: [
+    {
+      URL: 'https://google.com',
+      QUERY: 'query { someQuery { someField } }',
+      VARIABLES: { someVariable: 'someValue' },
+      JSON_SELECTOR: '.property[0].to.check',
+      VALUE_TO_CHECK: 'some value to be checked', // if you want to check selector value
+      SCENARIO: scenarios.RESPONSE_NOT_CONTAINS,
+      MESSAGE_FORMATTER: ({
+        HTTP,
+        expectedValue,
+        response,
+        $selectedHtml,
+        jsonSelectorValue,
+      }) => `${HTTP.URL}\n` + `${$selectedHtml.text().substring(0, 100)}\n`,
+      FAILURE_MESSAGE_FORMATTER: ({
+        HTTP,
+        expectedValue,
+        response,
+        $selectedHtml,
+        jsonSelectorValue,
+      }) => `${HTTP.URL}\n` + `${$selectedHtml.text().substring(0, 100)}\n`,
+    },
+  ],
+
   EMAIL: {
     ENABLED: false,
     HOST: 'smtp.gmail.com',
