@@ -24,6 +24,7 @@
     "@actions/cache": "^3.2.1",
     "cheerio": "^1.0.0-rc.12",
     "dotenv": "^16.0.3",
+    "graphql-http": "^1.19.0",
     "lodash-es": "^4.17.21",
     "node-fetch": "^3.3.1",
     "nodemailer": "^6.9.3"

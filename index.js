@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import { response } from './tools/response.js';
 import { notifier } from './tools/notifier.js';
 import { http } from './tools/http.js';
+import { gql } from './tools/gql.js';
 import { utils } from './tools/utils.js';
 import { scenarioHandlers } from './constants/scenarioHandlers.js';
 import { environment } from './tools/environment.js';
@@ -19,6 +20,7 @@ const PulseMonitor = {
     const {
       METHOD,
       URL,
+      HEADERS,
       PARSE_MODE,
       JSON_SELECTOR,
       HTML_SELECTOR,
@@ -30,6 +32,7 @@ const PulseMonitor = {
     const responseText = await http.call({
       url: URL,
       method: METHOD,
+      headers: HEADERS,
     });
     utils.log('🎉 Response received');
     utils.logLineBreak();
@@ -90,6 +93,63 @@ const PulseMonitor = {
       }
     }
   },
+  async graphQL(GQL_CONFIG) {
+    const {
+      METHOD,
+      URL,
+      HEADERS,
+      JSON_SELECTOR,
+      SCENARIO,
+      VALUE_TO_CHECK,
+      MESSAGE_FORMATTER,
+      FAILURE_MESSAGE_FORMATTER,
+    } = GQL_CONFIG;
+
+    const responseText = await gql.call({
+      url: URL,
+      query: METHOD,
+      headers: HEADERS,
+    });
+    utils.log('🎉 Response received');
+    utils.logLineBreak();
+    utils.logTitle('🔎 Checking response...', { bg: 'blue', fg: 'black' });
+
+    let jsonValue; // json path value
+    if (!JSON_SELECTOR) {
+      throw new Error('JSON_SELECTOR is required when using JSON parse mode');
+    }
+    if (SCENARIO.startsWith('HTML_')) {
+      throw new Error('HTML scenarios are not supported when using JSON parse mode');
+    }
+    jsonValue = response.parseJson(responseText, JSON_SELECTOR);
+
+    const handler = scenarioHandlers[SCENARIO];
+    const params = {
+      GQL: GQL_CONFIG,
+      formatter: MESSAGE_FORMATTER,
+      expectedValue: VALUE_TO_CHECK,
+      response: responseText,
+      jsonSelectorValue: jsonValue,
+    };
+
+    /**
+     * If we have the needed conditions, propagate the notification
+     */
+    if (handler && handler(params)) {
+      utils.log('🎉 Condition met');
+      utils.logLineBreak();
+      await notifier.propagate(params);
+    } else {
+      utils.log('No notification needed');
+      if (Config.NOTIFY_SCENARIO_FAILURES) {
+        utils.log('Failure notifications is enabled, sending...');
+        await notifier.propagate({
+          ...params,
+          formatter: FAILURE_MESSAGE_FORMATTER,
+        });
+      }
+    }
+  },
 };
 
 /**
@@ -97,4 +157,11 @@ const PulseMonitor = {
  */
 Config.HTTP.map(async (httpConfig) => {
   await PulseMonitor.http(httpConfig);
+});
+
+/**
+ * Start monitoring GraphQL endpoints
+ */
+Config.GRAPHQL.map(async (gqlConfig) => {
+  await PulseMonitor.graphQL(gqlConfig);
 });
