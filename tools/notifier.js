@@ -16,11 +16,8 @@ export const notifier = {
     utils.logSecondary('   expectedValue: ' + params.expectedValue);
     utils.logSecondary('   jsonSelectorValue: ' + params.jsonSelectorValue);
     utils.logSecondary(
-      '   htmlSelectorValue: ' +
-        params.$selectedHtml.text().substring(0, 100) +
-        '...'
+      '   text: ' + (params?.response.toString() || '').substring(0, 100)
     );
-    utils.logSecondary('   text: ' + params.response.substring(0, 100));
 
     const message = params.formatter({ ...params });
     for (const channel in channels) {

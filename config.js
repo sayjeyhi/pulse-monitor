@@ -10,6 +10,7 @@ export default {
   NOTIFY_SCENARIO_FAILURES: true,
   HTTP: [
     {
+      ENABLED: false,
       URL: 'https://google.com',
       METHOD: 'GET',
       PARSE_MODE: parseModes.HTML,
@@ -19,38 +20,48 @@ export default {
       SCENARIO: scenarios.RESPONSE_NOT_CONTAINS,
       HEADERS: {},
       MESSAGE_FORMATTER: ({
-        HTTP,
+        CONFIG,
         expectedValue,
         response,
         $selectedHtml,
         jsonSelectorValue,
-      }) => `${HTTP.URL}\n` + `${$selectedHtml.text().substring(0, 100)}\n`,
+      }) => `${CONFIG.URL}\n` + `${$selectedHtml.text().substring(0, 100)}\n`,
       FAILURE_MESSAGE_FORMATTER: ({
-        HTTP,
+        CONFIG,
         expectedValue,
         response,
         $selectedHtml,
         jsonSelectorValue,
-      }) => `${HTTP.URL}\n` + `${$selectedHtml.text().substring(0, 100)}\n`,
+      }) => `${CONFIG.URL}\n` + `${$selectedHtml.text().substring(0, 100)}\n`,
     },
   ],
   GRAPHQL: [
     {
-      URL: 'http://localhost:4000/graphql',
-      QUERY: 'query { someQuery { someField } }',
-      VARIABLES: { someVariable: 'someValue' },
-      JSON_SELECTOR: '.property[0].to.check',
-      VALUE_TO_CHECK: 'some value to be checked', // if you want to check selector value
-      SCENARIO: scenarios.RESPONSE_NOT_CONTAINS,
+      ENABLED: true,
+      URL: 'https://spacex-production.up.railway.app/',
+      QUERY: `
+      query ExampleQuery {
+        company {
+          ceo
+        }
+        roadster {
+          apoapsis_au
+        }
+      }
+      `,
+      VARIABLES: {},
+      JSON_SELECTOR: 'data.company.ceo',
+      VALUE_TO_CHECK: 'Elon Musk', // if you want to check selector value
+      SCENARIO: scenarios.JSON_SELECTOR_CONTENT_EQUAL,
       HEADERS: {},
-      MESSAGE_FORMATTER: ({ GQL, expectedValue, response, jsonSelectorValue }) =>
-        `${GQL.URL}\n` + `${jsonSelectorValue}\n`,
+      MESSAGE_FORMATTER: ({ CONFIG, expectedValue, response, jsonSelectorValue }) =>
+        `${CONFIG.URL}\n` + `${jsonSelectorValue}\n`,
       FAILURE_MESSAGE_FORMATTER: ({
-        HTTP,
+        CONFIG,
         expectedValue,
         response,
         jsonSelectorValue,
-      }) => `${HTTP.URL}\n` + `${jsonSelectorValue}\n`,
+      }) => `${CONFIG.URL}\n` + `${jsonSelectorValue}\n`,
     },
   ],
   EMAIL: {

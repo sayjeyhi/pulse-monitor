@@ -24,7 +24,7 @@ Supported data sources:
 | Rest API(json) | ✅         |
 | Website(HTML)  | ✅         |
 | Website(Text)  | ✅         |
-| GraphQL        | ❌         |
+| GraphQL        | ✅         |
 | Socket         | ❌         |
 
 Supported scenarios:
@@ -113,6 +113,8 @@ This configuration is common for all notification methods, and lives in the `con
       JSON_SELECTOR: '.property[0].to.check',
       VALUE_TO_CHECK: 'some value to be checked', // if you want to check selector value
       SCENARIO: scenarios.RESPONSE_NOT_CONTAINS,
+      HEADERS: {},
+      ENABLED: true,
       MESSAGE_FORMATTER: ({
         HTTP,
         expectedValue,
@@ -293,8 +295,9 @@ The configuration can be enabled using `config.js` file.
 
 - [ ] Support graphql endpoint calls
 - [ ] Support socket endpoint calls
-- [ ] Support webhooks
-- [ ] Support more notification channels
+- [ ] Add some example use cases and scenarios
+- [ ] Add more notification channels
+- [ ] Add a web interface to manage the crawler
 
 ## License
 

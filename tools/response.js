@@ -25,11 +25,25 @@ export const response = {
    * @param selector
    * @returns {*}
    */
-  parseJson(bodyContent, selector) {
+  parseJsonAndGet(bodyContent, selector) {
     try {
       utils.logSecondary(' - Parsing JSON:' + bodyContent.substring(0, 100) + '...');
       utils.logSecondary(' - With selector:' + selector);
       const jsonObject = JSON.parse(bodyContent);
+      return get(jsonObject, selector, 'NOT_EXIST_VALUE');
+    } catch (e) {
+      utils.log('🚫 Error loading page:', e.message);
+    }
+  },
+  /**
+   * Return JSON property
+   * @param jsonObject
+   * @param selector
+   * @returns {*}
+   */
+  getJsonProperty(jsonObject, selector) {
+    try {
+      utils.logSecondary(' - Reading JSON value:' + selector);
       return get(jsonObject, selector, 'NOT_EXIST_VALUE');
     } catch (e) {
       utils.log('🚫 Error loading page:', e.message);

@@ -2,30 +2,35 @@ import { createClient } from 'graphql-http';
 import { utils } from './utils.js';
 
 export const gql = {
+  name: 'graphql',
   /**
    * Call graphql endpoint
-   * @param url
-   * @param query
-   * @param headers
+   * @param URL
+   * @param QUERY
+   * @param HEADERS
    * @param rest
    * @returns {Promise<string>}
    */
-  async call({ url, query, headers = {}, ...rest }) {
+  async call({ URL, QUERY, HEADERS = {}, ...rest }) {
     utils.logTitle(
-      `🌎 HTTP Calling URL: ${url.replace('https://', '').replace('http://', '')}`,
+      `🌎 GRAPHQL Calling URL: ${URL.replace('https://', '').replace(
+        'http://',
+        ''
+      )}`,
       { bg: 'yellow', fg: 'black' }
     );
 
     try {
       const client = createClient({
-        url,
-        headers,
+        url: URL,
+        headers: HEADERS,
       });
       return await new Promise((resolve, reject) => {
         let result;
         client.subscribe(
           {
-            query,
+            query: QUERY,
+            variables: rest.VARIABLES || {},
           },
           {
             next: (data) => (result = data),

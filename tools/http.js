@@ -1,24 +1,24 @@
 import { utils } from './utils.js';
 
 export const http = {
+  name: 'http',
   /**
    * Call URL
-   * @param url
-   * @param method
-   * @param headers
+   * @param URL
+   * @param METHOD
+   * @param HEADERS
    * @param rest
    * @returns {Promise<string>}
    */
-  async call({ url, method = 'GET', headers = {}, ...rest }) {
+  async call({ URL, METHOD = 'GET', HEADERS = {} }) {
     utils.logTitle(
-      `🌎 HTTP Calling URL: ${url.replace('https://', '').replace('http://', '')}`,
+      `🌎 HTTP Calling URL: ${URL.replace('https://', '').replace('http://', '')}`,
       { bg: 'yellow', fg: 'black' }
     );
     try {
-      const response = await fetch(url, {
-        method,
-        headers,
-        ...rest,
+      const response = await fetch(URL, {
+        method: METHOD,
+        headers: HEADERS,
       });
       return await response.text();
     } catch (e) {
