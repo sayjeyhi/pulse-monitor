@@ -17,6 +17,7 @@ export default {
       JSON_SELECTOR: '.property[0].to.check',
       VALUE_TO_CHECK: 'some value to be checked', // if you want to check selector value
       SCENARIO: scenarios.RESPONSE_NOT_CONTAINS,
+      HEADERS: {},
       MESSAGE_FORMATTER: ({
         HTTP,
         expectedValue,
@@ -35,29 +36,23 @@ export default {
   ],
   GRAPHQL: [
     {
-      URL: 'https://google.com',
+      URL: 'http://localhost:4000/graphql',
       QUERY: 'query { someQuery { someField } }',
       VARIABLES: { someVariable: 'someValue' },
       JSON_SELECTOR: '.property[0].to.check',
       VALUE_TO_CHECK: 'some value to be checked', // if you want to check selector value
       SCENARIO: scenarios.RESPONSE_NOT_CONTAINS,
-      MESSAGE_FORMATTER: ({
-        HTTP,
-        expectedValue,
-        response,
-        $selectedHtml,
-        jsonSelectorValue,
-      }) => `${HTTP.URL}\n` + `${$selectedHtml.text().substring(0, 100)}\n`,
+      HEADERS: {},
+      MESSAGE_FORMATTER: ({ GQL, expectedValue, response, jsonSelectorValue }) =>
+        `${GQL.URL}\n` + `${jsonSelectorValue}\n`,
       FAILURE_MESSAGE_FORMATTER: ({
         HTTP,
         expectedValue,
         response,
-        $selectedHtml,
         jsonSelectorValue,
-      }) => `${HTTP.URL}\n` + `${$selectedHtml.text().substring(0, 100)}\n`,
+      }) => `${HTTP.URL}\n` + `${jsonSelectorValue}\n`,
     },
   ],
-
   EMAIL: {
     ENABLED: false,
     HOST: 'smtp.gmail.com',
