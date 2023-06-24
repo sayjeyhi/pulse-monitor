@@ -2,6 +2,9 @@
 
 > ⚡️A fast bun-based checker/crawler/monitor tool that runs for free on Github actions
 
+
+[![Twitter Follow](https://img.shields.io/twitter/follow/sayjeyhi?style=social)](https://twitter.com/sayjeyhi) [![GitHub followers](https://img.shields.io/github/followers/sayjeyhi?style=social)](https://github.com/sayjeyhi) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Jafar--Rezaei-blue)](https://www.linkedin.com/in/jafar-rezaei/)
+
 ![banner.png](assets/banner.png)
 
 ### Use cases
@@ -286,10 +289,6 @@ The configuration can be enabled using `config.js` file.
 }
 ```
 
-### Author
-
-[![Twitter Follow](https://img.shields.io/twitter/follow/sayjeyhi?style=social)](https://twitter.com/sayjeyhi) [![GitHub followers](https://img.shields.io/github/followers/sayjeyhi?style=social)](https://github.com/sayjeyhi) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Jafar--Rezaei-blue)](https://www.linkedin.com/in/jafar-rezaei/)
-
 ### Todos
 
 - [ ] Support graphql endpoint calls
@@ -300,3 +299,4 @@ The configuration can be enabled using `config.js` file.
 ## License
 
 MIT
+
