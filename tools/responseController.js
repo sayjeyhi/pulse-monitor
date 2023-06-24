@@ -2,7 +2,7 @@ import * as cheerio from 'cheerio';
 import get from 'lodash-es/get.js';
 import { utils } from './utils.js';
 
-export const response = {
+export const responseController = {
   /**
    * Load HTML and return cheerio object
    * @param bodyContent

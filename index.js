@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { response } from './tools/response.js';
+import { responseController } from './tools/responseController.js';
 import { notifier } from './tools/notifier.js';
 import { http } from './tools/http.js';
 import { gql } from './tools/gql.js';
@@ -59,7 +59,10 @@ const PulseMonitor = {
           'JSON scenarios are not supported when using HTML parse mode'
         );
       }
-      $selectedHtml = await response.parseHtml(response, CONFIG.HTML_SELECTOR);
+      $selectedHtml = await responseController.parseHtml(
+        response,
+        CONFIG.HTML_SELECTOR
+      );
     } else if (PARSE_MODE === 'JSON') {
       if (!CONFIG.JSON_SELECTOR) {
         throw new Error('JSON_SELECTOR is required when using JSON parse mode');
@@ -70,9 +73,15 @@ const PulseMonitor = {
         );
       }
       if (typeof response === 'string') {
-        jsonValue = response.parseJsonAndGet(response, CONFIG.JSON_SELECTOR);
+        jsonValue = responseController.parseJsonAndGet(
+          response,
+          CONFIG.JSON_SELECTOR
+        );
       } else {
-        jsonValue = response.getJsonProperty(response, CONFIG.JSON_SELECTOR);
+        jsonValue = responseController.getJsonProperty(
+          response,
+          CONFIG.JSON_SELECTOR
+        );
       }
     } else {
       utils.logSecondary('📄 Checking response text directly');
