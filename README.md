@@ -138,6 +138,44 @@ You can pick different `PARSE_MODE` for the data you want to check. Currently su
 Also you can choose your `SCENARIO` from the list of supported scenarios.
 The chosen scenario will be applied to the `VALUE_TO_CHECK` and the `HTML_SELECTOR` or `JSON_SELECTOR` value or the main Response of http call if `PARSE_MODE` is `TEXT`.
 
+### Graphql configuration
+To configure the graphql crawler you need to provide the graphql endpoint and the query.
+For this you need to edit `config.js` file and add your endpoint + query there.
+
+```javascript 
+{
+  GRAPHQL: [
+    {
+      ENABLED: true,
+      URL: 'https://spacex-production.up.railway.app/',
+      QUERY: `
+          query ExampleQuery {
+          company {
+          ceo
+        }
+        roadster {
+          apoapsis_au
+        }
+      }`,
+      VARIABLES: {},
+      JSON_SELECTOR: 'data.company.ceo',
+      VALUE_TO_CHECK: 'Elon Musk', // if you want to check selector value
+      SCENARIO: scenarios.JSON_SELECTOR_CONTENT_EQUAL,
+      HEADERS: {},
+      MESSAGE_FORMATTER: ({ CONFIG, expectedValue, response, jsonSelectorValue }) =>
+      `${CONFIG.URL}\n` + `${jsonSelectorValue}\n`,
+      FAILURE_MESSAGE_FORMATTER: ({
+        CONFIG,
+        expectedValue,
+        response,
+        jsonSelectorValue,
+      }) => `${CONFIG.URL}\n` + `${jsonSelectorValue}\n`,
+    },
+  ]
+}
+```
+For the graphql crawler you can use the same scenarios as the http crawler except that the `PARSE_MODE` is always `JSON` and scenario should be started with `JSON_SELECTOR_`.
+
 ### Email
 
 Emailing can work simply with google SMTP server. You need to change the email address and password.
