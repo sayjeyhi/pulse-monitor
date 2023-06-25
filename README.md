@@ -331,11 +331,10 @@ The configuration can be enabled using `config.js` file.
 
 ### Todos
 
-- [ ] Support graphql endpoint calls
-- [ ] Support socket endpoint calls
 - [ ] Add some example use cases and scenarios
 - [ ] Add more notification channels
 - [ ] Add a web interface to manage the crawler
+- [ ] Support socket endpoint calls
 
 ## License
 
